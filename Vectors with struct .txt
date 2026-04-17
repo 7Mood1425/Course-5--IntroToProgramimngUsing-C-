@@ -1,0 +1,62 @@
+#include<iostream>
+#include<vector>
+#include"InputReadLib.h";
+using namespace std;
+
+struct stEmployee
+{
+	string FirstName;
+	string LastName;
+	float Salary;
+};
+
+void ReadEmployeeInfo(vector<stEmployee>&vEmployee) {
+	char ReadMore = 'Y';
+	stEmployee Employee;
+	do {
+		cout << "Please Enter Your First Name : ";
+		cin >> Employee.FirstName;
+		cout << endl;
+
+		cout << "Please Enter Your Last Name : ";
+		cin >> Employee.LastName;
+		cout << endl;
+
+		cout << "Please Enter Your Salary : ";
+		cin >> Employee.Salary;
+		cout << endl;
+
+		vEmployee.push_back(Employee);
+
+		cout << "Do you want   to add more Employee ? Y/N ? ";
+		cin >> ReadMore;
+
+	} while (ReadMore == 'Y' || ReadMore == 'y');
+
+	
+}
+
+void PrintEmployeeInfo(vector<stEmployee>& vEmployee) 
+{
+
+	for(stEmployee& Employee:vEmployee)
+	{
+		cout << endl;
+		cout << "First Name : " << Employee.FirstName << endl;
+		cout << "\nLast Name : " << Employee.LastName << endl;
+		cout << "\nSalary : " << Employee.Salary << endl;
+    }
+	cout << endl;
+}
+
+int main() { 
+	vector<stEmployee> vEmployee;
+
+
+	ReadEmployeeInfo(vEmployee);
+	PrintEmployeeInfo(vEmployee);
+
+
+	return 0;
+}
+

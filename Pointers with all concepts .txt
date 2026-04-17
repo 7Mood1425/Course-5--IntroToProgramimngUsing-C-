@@ -1,0 +1,60 @@
+#include<iostream>
+#include<vector>
+#include"InputReadLib.h";
+using namespace std;
+
+
+struct stEmployee {
+	string Name;
+	float Salary;
+};
+
+int main() { 
+	stEmployee Employee;
+
+	Employee.Name = "Ahmed";
+	Employee.Salary = 4555;
+	
+	void* Pointer;
+	float Num = 45.2;
+	int Num2 = 65.6;
+	double Num3 = 56.75;
+	int arr[3] = { 20,30,40 };
+
+	Pointer = &Num;
+
+	cout << Pointer << endl;
+	cout << *(static_cast<float*>(Pointer)) << endl;
+
+	Pointer = &Num2;
+	
+	cout << Pointer << endl;
+	cout << *(static_cast<int*>(Pointer)) << endl;
+
+	Pointer = &Num3;
+
+	cout << Pointer << endl;
+	cout << *(static_cast<double*>(Pointer)) << endl;
+
+	Pointer = &Employee;
+	cout << Pointer << endl;
+
+	//ما نستخدم * في البدايه نفس الباقي    static  مع 
+	cout << (static_cast<stEmployee*>(Pointer)->Name) << endl;
+	cout << (static_cast<stEmployee*>(Pointer)->Salary) << endl;
+
+	Pointer = arr; 
+
+	for (int i = 0; i < 3; i++) {
+
+	cout << *(static_cast<int*>(Pointer)+i) << endl;
+		
+	}
+
+	
+
+	return 0;
+}
+
+
+

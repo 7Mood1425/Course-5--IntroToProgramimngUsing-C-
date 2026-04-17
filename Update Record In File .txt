@@ -1,0 +1,87 @@
+#include<iostream>
+using namespace std;
+#include<fstream>
+#include<vector>
+#include<string>
+
+void LoadDataFromFileToVector(string FileName, vector<string>& vFileContant) {
+
+	fstream MyFile;
+	MyFile.open(FileName, ios::in);
+	if (MyFile.is_open())
+	{
+		string Line;
+		while (getline(MyFile, Line))
+		{
+			vFileContant.push_back(Line);
+		}
+		MyFile.close();
+	}
+
+}
+
+void SaveVectorToFile(string FileName, vector<string>VFile) {
+
+	fstream MyFile;
+	MyFile.open(FileName, ios::out);
+	if (MyFile.is_open()) 
+	{
+
+		for (string &Line : VFile)
+		{
+			if (Line != "") 
+			{
+				MyFile << Line << endl;
+			}
+		}
+	}
+}
+
+void UpdateRecordInFile(string FileName,string Record,string UpdateTo){
+	vector<string>vFile;
+	LoadDataFromFileToVector(FileName, vFile);
+	for (string &Line : vFile) 
+	{
+		if (Line == Record) 
+		{
+			Line = UpdateTo;
+		}
+	}
+	SaveVectorToFile(FileName, vFile);
+
+}
+
+void PrintFileContant(string FileName) {
+
+	fstream MyFile;
+	MyFile.open(FileName, ios::in);
+
+	if (MyFile.is_open())
+	{
+		string line;
+		while (getline(MyFile, line)) {
+			cout << line << endl;
+		}
+		MyFile.close();
+
+	}
+
+}
+
+int main() { 
+
+	cout << "File Contant Before Update : \n";
+	PrintFileContant("File.txt");
+
+	UpdateRecordInFile("File.txt", "Mohmmad", "Ali");
+
+	cout << "File Contant After Update : \n";
+		PrintFileContant("File.txt");
+
+	
+
+	return 0;
+}
+
+
+

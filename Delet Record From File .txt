@@ -1,0 +1,87 @@
+#include<iostream>
+using namespace std;
+#include<fstream>
+#include<vector>
+#include<string>
+
+void LoadDataFromFileToVector(string FileName, vector<string>& vFileContant) {
+
+	fstream MyFile;
+	MyFile.open(FileName, ios::in);
+	if (MyFile.is_open())
+	{
+		string Line;
+		while (getline(MyFile, Line))
+		{
+			vFileContant.push_back(Line);
+		}
+		MyFile.close();
+	}
+
+}
+
+void SaveVectorToFile(string FileName, vector<string>VFile) {
+
+	fstream MyFile;
+	MyFile.open(FileName, ios::out);
+	if (MyFile.is_open()) 
+	{
+
+		for (string &Line : VFile)
+		{
+			if (Line != "") 
+			{
+				MyFile << Line << endl;
+			}
+		}
+	}
+}
+
+void DeleteRecordFromFile(string FileName,string Record){
+	vector<string>vFile;
+	LoadDataFromFileToVector(FileName, vFile);
+	for (string &Line : vFile) 
+	{
+		if (Line == Record) 
+		{
+			Line = "";
+		}
+	}
+	SaveVectorToFile(FileName, vFile);
+
+}
+
+void PrintFileContant(string FileName) {
+
+	fstream MyFile;
+	MyFile.open(FileName, ios::in);
+
+	if (MyFile.is_open())
+	{
+		string line;
+		while (getline(MyFile, line)) {
+			cout << line << endl;
+		}
+		MyFile.close();
+
+	}
+
+}
+
+int main() { 
+
+	cout << "File Contant Before Delete : \n";
+	PrintFileContant("File.txt");
+
+	DeleteRecordFromFile("File.txt", "Ali");
+
+	cout << "File Contant After Delete : \n";
+		PrintFileContant("File.txt");
+
+	
+
+	return 0;
+}
+
+
+

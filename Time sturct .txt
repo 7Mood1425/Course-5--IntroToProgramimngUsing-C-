@@ -1,0 +1,30 @@
+#pragma warning(disable : 4996);
+
+#include<iostream>
+using namespace std;
+#include<ctime>
+
+
+int main() { 
+
+
+
+	time_t Time = time(0); //get time now
+	tm* Now = localtime(&Time);
+
+	cout << "Year :" << Now->tm_year+1900 << endl; //+1900
+	cout << "Month :" << Now->tm_mon +1<< endl;//+1
+	cout << "Day :" << Now->tm_mday << endl;
+	cout << "Hour :" << Now->tm_hour << endl;
+	cout << "Min :" << Now->tm_min << endl;
+	cout << "Secend :" << Now->tm_sec << endl;
+	cout << "Weak day :" << Now->tm_wday << endl;//days since sunday
+	cout << "Year day :" << Now->tm_yday << endl;//days since jan 1st
+
+
+
+	return 0;
+}
+
+
+

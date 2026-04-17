@@ -1,0 +1,26 @@
+#pragma warning(disable : 4996);
+
+#include<iostream>
+using namespace std;
+#include<ctime>
+
+
+int main() { 
+
+
+
+	time_t Time = time(0); //get time now
+	char* Tim = ctime(&Time);///convert in string for,
+	cout << "The Local Time is : " << Tim << "\n";
+	
+	tm* gmtm = gmtime(&Time);//converting now to tm sturct for UCT date/Time
+	Tim = asctime(gmtm);
+	cout << "UTC date and time is " << Tim;
+
+
+
+	return 0;
+}
+
+
+
